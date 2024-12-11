@@ -67,6 +67,10 @@
                         <select id="{$name}" name="{$name}" class="form-control">
                             {html_options values=$PostReservationPluginValues output=$PostReservationPluginValues selected=$setting->Value}
                         </select>
+                    {elseif $setting->Key == ConfigKeys::PLUGIN_STYLING}
+                        <select id="{$name}" name="{$name}" class="form-control">
+                            {html_options values=$StylingPluginValues output=$StylingPluginValues selected=$setting->Value}
+                        </select>
                     {elseif $setting->Type == ConfigSettingType::String}
                         <input id="{$name}" type="text" size="50" name="{$name}" value="{$setting->Value|escape}"
                                class="form-control"/>

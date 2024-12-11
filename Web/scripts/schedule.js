@@ -276,6 +276,7 @@ function Schedule(opts, resourceGroups) {
             const past = reservation.IsPast ? "past" : "";
             const participant = reservation.IsParticipant ? "participating" : "";
             const isPending = reservation.IsPending ? "pending" : "";
+            const additonalCSSClasses = reservation.AdditonalCSSClasses ? reservation.AdditonalCSSClasses.join(" ") : "";
             const isNew = reservation.IsNew ? `<span class="reservation-new">${opts.newLabel}</span>` : "";
             const isUpdated = reservation.IsUpdated ? `<span class="reservation-updated">${opts.updatedLabel}</span>` : "";
             const isDraggable = reservation.IsReservation && ((reservation.IsOwner && !reservation.IsPast) || reservation.IsAdmin);
@@ -284,7 +285,7 @@ function Schedule(opts, resourceGroups) {
             let color = reservation.BackgroundColor !== "" ? `background-color:${reservation.BackgroundColor};color:${reservation.TextColor};` : "";
             const style = `left:${left}px; top:${top}px; width:${width}px; height:${divHeight}px;`;
             const div = $(`<div
-                            class="${className} ${mine} ${past} ${participant} ${isPending} event"
+                            class="${className} ${mine} ${past} ${participant} ${isPending} ${additonalCSSClasses} event"
                             style="${style} ${color}"
                             data-resid="${reservation.ReferenceNumber}"
                             data-resourceid="${reservation.ResourceId}"
@@ -465,6 +466,7 @@ function Schedule(opts, resourceGroups) {
                     const isNew = res.IsNew ? `<span class="reservation-new">${opts.newLabel}</span>` : "";
                     const isUpdated = res.IsUpdated ? `<span class="reservation-updated">${opts.updatedLabel}</span>` : "";
                     const isPending = res.IsPending ? "pending" : "";
+                    const additonalCSSClasses = res.AdditonalCSSClasses ? res.AdditonalCSSClasses.join(" ") : "";
                     const isDraggable = res.IsReservation && ((res.IsOwner && !res.IsPast) || res.IsAdmin);
                     const draggableAttribute = isDraggable ? 'draggable="true"' : "";
                     let color = res.BackgroundColor !== "" ? `background-color:${res.BackgroundColor};color:${res.TextColor};` : "";
@@ -483,7 +485,7 @@ function Schedule(opts, resourceGroups) {
                         let startTime = startsBefore ? opts.midnightLabel : res.StartTime;
                         let endTime = endsAfter ? opts.midnightLabel : res.EndTime;
                         const div = $(`<div
-                                    class="${className} ${mine} ${past} ${participant} ${isPending} condensed-event"
+                                    class="${className} ${mine} ${past} ${participant} ${isPending} ${additonalCSSClasses} condensed-event"
                                     style="${color}"
                                     data-resid="${res.ReferenceNumber}">
                                     <span>${startTime}-${endTime}</span>
@@ -634,7 +636,7 @@ function Schedule(opts, resourceGroups) {
                     }
                     const style = `left:${left}px; top:${top}px; width:${width}px; height:${divHeight}px;`;
                     const div = $(`<div
-                                    class="${className} ${mine} ${past} ${participant} ${isPending} event"
+                                    class="${className} ${mine} ${past} ${participant} ${isPending} ${additonalCSSClasses} event"
                                     style="${style} ${color}"
                                     data-resid="${res.ReferenceNumber}"
                                     data-resourceid="${res.ResourceId}"

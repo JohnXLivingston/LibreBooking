@@ -104,6 +104,11 @@ abstract class Page implements IPage
             $this->smarty->assign('CssUrl', 'custom-style.css');
         }
 
+        $stylingFactory = PluginManager::Instance()->LoadStyling();
+        if (!empty($stylingFactory->AdditionalCSS($userSession))) {
+            $this->smarty->assign('CssStylingFile', 'styling-plugin.php');
+        }
+
         $this->smarty->assign('FaviconUrl', 'favicon.ico');
         if (file_exists($this->path . 'custom-favicon.png')) {
             $this->smarty->assign('FaviconUrl', 'custom-favicon.png');

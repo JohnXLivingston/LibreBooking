@@ -123,6 +123,7 @@ $conf['settings']['plugins']['Permission'] = '';
 $conf['settings']['plugins']['PostRegistration'] = '';
 $conf['settings']['plugins']['PreReservation'] = '';
 $conf['settings']['plugins']['PostReservation'] = '';
+$conf['settings']['plugins']['Styling'] = '';
 /**
  * Installation settings
  */

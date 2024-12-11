@@ -99,6 +99,9 @@
     {if isset($CssUrl) && $CssUrl neq ''}
         {cssfile src=$CssUrl}
     {/if}
+    {if isset($CssStylingFile) && $CssStylingFile neq ''}
+        {cssfile src='styling-plugin.php'}
+    {/if}
     {if isset($CssExtensionFile) && $CssExtensionFile neq ''}
         {cssfile src=$CssExtensionFile}
     {/if}

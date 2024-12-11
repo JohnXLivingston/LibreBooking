@@ -234,6 +234,11 @@ class ReservationSlot implements IReservationSlot
         return $this->_reservation->GetBorderColor();
     }
 
+    public function GetAdditonalCSSClasses()
+    {
+        return $this->_reservation->GetAdditonalCSSClasses() ?? [];
+    }
+
     /**
      * @return ReservationItemView
      */

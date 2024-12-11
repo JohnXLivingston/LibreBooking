@@ -168,6 +168,27 @@ class PluginManager
     }
 
     /**
+     * Loads the configured Styling plugin, if one exists
+     * If no plugin exists, the default PreReservationFactory class is returned
+     *
+     * @return IPreReservationFactory
+     */
+    public function LoadStyling()
+    {
+        require_once(ROOT_DIR . 'lib/Application/Styling/namespace.php');
+
+        $factory = new StylingFactory();
+
+        $plugin = $this->LoadPlugin(ConfigKeys::PLUGIN_STYLING, 'Styling', $factory);
+
+        if (!is_null($plugin)) {
+            return $plugin;
+        }
+
+        return $factory;
+    }
+
+    /**
      * @param string $configKey key to use
      * @param string $pluginSubDirectory subdirectory name under 'plugins'
      * @param mixed $baseImplementation the base implementation of the plugin.  allows decorating

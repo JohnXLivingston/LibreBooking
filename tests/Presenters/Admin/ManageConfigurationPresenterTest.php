@@ -315,6 +315,14 @@ class FakeManageConfigurationPage extends FakeActionPageBase implements IManageC
     }
 
     /**
+     * @param string[] $values
+     */
+    public function SetStylingPluginValues($values)
+    {
+        // TODO: Implement SetStylingPluginValues() method.
+    }
+
+    /**
      * @return int
      */
     public function GetHomePageId()

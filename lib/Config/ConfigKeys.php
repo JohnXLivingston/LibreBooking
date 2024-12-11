@@ -47,6 +47,7 @@ class ConfigKeys
     public const PLUGIN_POSTREGISTRATION = 'PostRegistration';
     public const PLUGIN_PRERESERVATION = 'PreReservation';
     public const PLUGIN_POSTRESERVATION = 'PostReservation';
+    public const PLUGIN_STYLING = 'Styling';
 
     public const RESERVATION_START_TIME_CONSTRAINT = 'start.time.constraint';
     public const RESERVATION_UPDATES_REQUIRE_APPROVAL = 'updates.require.approval';

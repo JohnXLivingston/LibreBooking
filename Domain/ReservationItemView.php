@@ -69,6 +69,11 @@ interface IReservedItemView
     public function GetBorderColor();
 
     /**
+     * @return string[]
+     */
+    public function GetAdditonalCSSClasses();
+
+    /**
      * @return string
      */
     public function GetTitle();
@@ -404,6 +409,11 @@ class ReservationItemView implements IReservedItemView
     private $ownerGroupIds = [];
 
     /**
+     * @var StylingFactory
+     */
+    private $StylingFactory;
+
+    /**
      * @param $referenceNumber string
      * @param $startDate Date
      * @param $endDate Date
@@ -522,6 +532,8 @@ class ReservationItemView implements IReservedItemView
 
         $this->Attributes = CustomAttributes::Parse($attribute_list);
         $this->UserPreferences = UserPreferences::Parse($preferences);
+
+        $this->StylingFactory= PluginManager::Instance()->LoadStyling();
     }
 
     /**
@@ -990,6 +1002,11 @@ class ReservationItemView implements IReservedItemView
         return '';
     }
 
+    public function GetAdditonalCSSClasses()
+    {
+        return $this->StylingFactory->GetReservationAdditonalCSSClasses($this) ?? [];
+    }
+
     public function GetTitle()
     {
         return $this->Title;
@@ -1283,6 +1300,11 @@ class BlackoutItemView extends ReservationItemView
     public function GetBorderColor()
     {
         return '';
+    }
+
+    public function GetAdditonalCSSClasses()
+    {
+        return [];
     }
 
     public function GetTitle()

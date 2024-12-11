@@ -161,6 +161,11 @@ class ReservationListItem
         return $this->item->GetBorderColor();
     }
 
+    public function GetAdditonalCSSClasses()
+    {
+        return $this->item->GetAdditonalCSSClasses() ?? [];
+    }
+
     /**
      * @return string
      */
@@ -209,6 +214,7 @@ class ReservationListItem
         $dto->BorderColor = $this->GetBorderColor();
         $dto->BackgroundColor = $this->GetColor();
         $dto->TextColor = $this->GetTextColor();
+        $dto->AdditonalCSSClasses = $this->GetAdditonalCSSClasses();
         $dto->IsReservation = $this->IsReservation();
         $dto->IsBuffered = false;
         $dto->IsBuffer = false;
@@ -516,4 +522,8 @@ class ReservationListItemDto
      * @var string|null
      */
     public $BufferedEndTime;
+    /**
+     * @var string[]
+     */
+    public $AdditonalCSSClasses;
 }
