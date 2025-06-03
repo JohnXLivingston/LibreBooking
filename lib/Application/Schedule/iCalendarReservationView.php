@@ -2,6 +2,7 @@
 
 class iCalendarReservationView
 {
+    public $Classification;
     public $DateCreated;
     public $DateEnd;
     public $DateStart;
@@ -17,6 +18,12 @@ class iCalendarReservationView
     public $EndReminder;
     public $LastModified;
     public $IsPending;
+    public $ExtraIcalLines;
+
+    /**
+     * @var ExportFactory
+     */
+    private $ExportFactory;
 
     /**
      * @var ReservationItemView
@@ -39,8 +46,11 @@ class iCalendarReservationView
         $canViewUser = $privacyFilter->CanViewUser($currentUser, $res, $res->OwnerId);
         $canViewDetails = $privacyFilter->CanViewDetails($currentUser, $res, $res->OwnerId);
 
+        $this->ExportFactory= PluginManager::Instance()->LoadExport();
+
         $privateNotice = 'Private';
 
+        $this->Classification = method_exists($this->ExportFactory, 'GetIcalendarClassification') ? $this->ExportFactory->GetIcalendarClassification($res) : 'PUBLIC';
         $this->DateCreated = $res->DateCreated;
         $this->DateEnd = $res->EndDate;
         $this->DateStart = $res->StartDate;
@@ -68,6 +78,8 @@ class iCalendarReservationView
         if ($res->OwnerId == $currentUser->UserId) {
             $this->OrganizerEmail = str_replace('@', '-noreply@', $res->OwnerEmailAddress);
         }
+
+        $this->ExtraIcalLines = method_exists($this->ExportFactory, 'GetIcalendarExtraLines') ? $this->ExportFactory->GetIcalendarExtraLines($res) : null;
     }
 
     /**
